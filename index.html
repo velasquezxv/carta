@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor</title>
+    <style>
+        body {
+            background-image: url('https://i.imgur.com/VMNBr9U.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #ffc0cb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .boton {
+            padding: 12px 24px;
+            font-size: 20px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 2;
+        }
+
+        .boton:hover {
+            background-color: #e63950;
+        }
+
+        .carta {
+            width: 90%;
+            max-width: 350px;
+            background-color: #ffb3c6;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none;
+            border: 5px solid white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .carta h1 {
+            color: #ff3366;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .carta p {
+            color: #800000;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .boton-cerrar {
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .boton-cerrar:hover {
+            background-color: #e63950;
+        }
+
+        .corazon {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            opacity: 0.8;
+            animation: caer 7s linear infinite, brillo 1.5s infinite alternate;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes caer {
+            from {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes brillo {
+            from {
+                text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+            }
+            to {
+                text-shadow: 0 0 15px rgba(255, 0, 0, 1);
+            }
+        }
+
+        .explosion {
+            position: absolute;
+            font-size: 60px;
+            animation: explosion 1.5s forwards;
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        @keyframes explosion {
+            0% {
+                transform: scale(0.5) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="boton" onclick="abrirCarta()">💌 Carta para mi Princesa 💌</button>
+    <div class="carta" id="carta">
+        <h1>Para mi Princesa ❤️</h1>
+        <p class="message">Hola mi cuchurrim, esta es la carta que te debía en san valentin .
+        Quiero comenzar esto diciéndote lo que en verdad siento en mi corazón . Desde el primer día que te conoci, supe que tú eras la niña que iba
+            a ser la dueña de mi corazón y de mi mente. Estoy muy feliz de pasar 1 año a tu lado literalmente jsjs, porque de corazón te digo que no me arrepiento de haberte conocido.
+            Eres lo más bonito que vi y conocí en toda mi triste vida y no quiero que nunca te alejes de mi lado. No sé qué haría si tú no estás... siento que no podría amar a nadie más. Tú te llevarías la luz y el poco brillo que tiene mi corazón ❤️.
+        Quiero que siempre busquemos una solución a nuestros problemas, quiero que cuando nos veamos y estemos juntos todo sea perfecto y que después de todo, al final, nos estemos riendo de todo. Gracias por ser mi novia y por seguir conmigo. No sé cómo me soportas tanto, eres una gran mujer de admirar, mi amor. Sé que también pasas por momentos delicados y solo te puedo decir que con la ayuda de Dios todo se resolverá.
+              Gracias una vez más por estar conmigo ❤️</p>
+          <p>❤️ TE AMO DE AQUÍ HASTA EL INFINITO Y MÁS ALLÁ MUAKK ❤️</p>
+          <p class="message">TE AMO MI DAYANA ALIAS MI GORDITA DORMILONA ❤️❤️
+            Siempre juntos, ¿sí? Sonríe si aceptas ❤️ y si no, eres gei 😆</p>
+        <button class="boton-cerrar" onclick="cerrarCarta()">Regresa a las fotos aqui bb</button>
+    </div>
+    
+    <audio id="musica" loop>
+        <source src="https://www.myinstants.com/media/sounds/lady-gaga-always-remember-us-this-way.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        function abrirCarta() {
+            document.querySelector('.boton').style.display = 'none';
+            document.getElementById("carta").style.display = "block";
+            document.querySelector(".boton-cerrar").style.display = "block";
+            
+            let musica = document.getElementById("musica");
+            musica.volume = 0.2;
+            musica.play();
+            
+            for (let i = 0; i < 30; i++) {
+                crearExplosion();
+            }
+
+            setInterval(crearLluvia, 200);
+        }
+
+        function cerrarCarta() {
+            document.querySelector('.boton').style.display = 'block';
+            document.getElementById("carta").style.display = "none";
+            document.querySelector(".boton-cerrar").style.display = "none";
+
+            let musica = document.getElementById("musica");
+            musica.pause();
+            musica.currentTime = 0;
+        }
+
+        function crearLluvia() {
+            const corazon = document.createElement("div");
+            corazon.innerHTML = "❤️";
+            corazon.classList.add("corazon");
+            document.body.appendChild(corazon);
+
+            corazon.style.left = Math.random() * window.innerWidth + "px";
+            corazon.style.top = "-20px";
+            corazon.style.fontSize = Math.random() * 30 + 10 + "px";
+
+            setTimeout(() => corazon.remove(), 10000);
+        }
+
+        function crearExplosion() {
+            const explosion = document.createElement("div");
+            explosion.innerHTML = "❤️❤️";
+            explosion.classList.add("explosion");
+            document.body.appendChild(explosion);
+
+            explosion.style.left = Math.random() * window.innerWidth + "px";
+            explosion.style.top = Math.random() * window.innerHeight + "px";
+
+            setTimeout(() => explosion.remove(), 1500);
+        }
+    </script>
+</body>
+</html>
